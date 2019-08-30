@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: javigs82
+  description: this role aims to install terraform
+
+  license: MIT
+
+  min_ansible_version: 2.7
+
+  galaxy_tags: []
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 18.04
+
+dependencies: []

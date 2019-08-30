@@ -1,0 +1,74 @@
+---
+# Packages needed
+- name: Install requirements
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - unzip
+    - awscli
+
+# create terraform group and user
+- name: Ensure group terraform exists
+  group:
+    name: terraform
+    state: present
+
+- name: Ensure user terraform is present
+  user:
+    name: terraform
+    groups: terraform
+
+- name: Create Terraform directory
+  file:
+    path: "{{ terraform_path }}"
+    state: directory
+    mode: 0755
+    owner: terraform
+    group: terraform
+
+- name: Create Terraform version directory
+  file:
+    path: "{{ terraform_version_dir }}"
+    state: directory
+    mode: 0755
+    owner: terraform
+    group: terraform
+
+- name: Check if terraform binary exists
+  stat:
+    path: "{{ terraform_version_bin }}"
+  register: terraform_bin_st
+
+- name: Download Terraform release
+  get_url:
+    url: "{{ terraform_url }}"
+    dest: "{{ terraform_version_dir }}/{{ terraform_file }}"
+    checksum: "{{ terraform_checksum }}"
+  when: not terraform_bin_st.stat.exists
+
+- name: Extract Terraform binary
+  unarchive:
+    src: "{{ terraform_version_dir }}/{{ terraform_file }}"
+    dest: "{{ terraform_version_dir }}"
+    owner: terraform
+    group: terraform
+    remote_src: yes
+    creates: "{{ terraform_version_bin }}"
+  when: not terraform_bin_st.stat.exists
+
+- name: Cleanup
+  file:
+    path: "{{ terraform_version_dir }}/{{ terraform_file }}"
+    state: absent
+
+- name: Symlink terraform to /usr/local/bin
+  file:
+    src: "{{ terraform_version_bin }}"
+    dest: "{{ terraform_bin }}"
+    state: link
+
+- name: Cleanup legacy binaries
+  file:
+    path: "{{ terraform_path }}/terraform"
+    state: absent
