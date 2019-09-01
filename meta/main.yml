@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: javigs82
-  description: this role aims to install terraform
+  description: this role aims to install terraform and commong tool like awscli or similars
 
   license: MIT
 
@@ -13,5 +13,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - 18.04
+    - name: Centos
+      versions:
+        - 7
+
 
 dependencies: []

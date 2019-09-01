@@ -1,7 +1,7 @@
 Terraform AWS Bastion
 =========
 
-playing with terraform and aws workstation 
+role for playing with terraform and aws as workstation 
 
 Requirements
 ------------
