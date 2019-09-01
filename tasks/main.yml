@@ -7,6 +7,7 @@
   with_items:
     - unzip
     - awscli
+    - git
 
 # create terraform group and user
 - name: Ensure group terraform exists
