@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: terraform-bastion
   author: javigs82
   description: this role aims to install terraform and commong tool like awscli or similars
 
