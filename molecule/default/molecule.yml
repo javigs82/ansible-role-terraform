@@ -32,7 +32,6 @@ provisioner:
     enabled: true
 
   playbooks:
-    prepare: prepare.yml
     converge: ../playbook.yml
 
 verifier:

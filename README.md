@@ -3,7 +3,7 @@
 Role for working with terraform and other tools like:
 
  - awscli
- - kops
+ - git
 
 ## Requirements
 

@@ -3,4 +3,4 @@
   hosts: all
 
   roles:
-    - role: ansible-role-terraform-bastion
+    - role: ansible-role-terraform
