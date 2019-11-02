@@ -1,20 +1,25 @@
 ---
+dependencies: []
+
 galaxy_info:
-  role_name: terraform-bastion
+  role_name: terraform
   author: javigs82
-  description: this role aims to install terraform and common tool like awscli, kops, kubectl among others
+  description: this role aims to install terraform with common tool like awscli, kops among others
   license: MIT
 
   min_ansible_version: 2.7
 
-  galaxy_tags: []
-
   platforms:
     - name: Ubuntu
       versions:
-        - 18.04
-    - name: Centos
+        - bionic
+    - name: EL
       versions:
         - 7
 
-dependencies: []
+  galaxy_tags:
+    - terraform
+    - cloud
+    - aws
+    - kops
+    - awscli
