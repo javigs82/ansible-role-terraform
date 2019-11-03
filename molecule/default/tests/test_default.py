@@ -32,3 +32,14 @@ def test_is_kops_user_created(host):
 def test_is_kops_bin_installed(host):
     command = host.run("kops version")
     assert "Version" in command.stdout
+
+
+def test_is_kubectl_user_created(host):
+    user = host.user("kubectl")
+    assert user.name == "kubectl"
+    assert "kubectl" in user.groups
+
+
+def test_is_kubectl_bin_installed(host):
+    command = host.run("kubectl version")
+    assert "Client Version" in command.stdout

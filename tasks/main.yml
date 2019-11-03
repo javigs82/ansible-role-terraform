@@ -120,3 +120,52 @@
     src: "{{ kops_version_bin }}"
     dest: "{{ kops_bin }}"
     state: link
+
+
+## kubectl
+
+# Install kops
+
+- name: Ensure group kubectl exists
+  group:
+    name: kubectl
+    state: present
+
+- name: Ensure user kubectl is present
+  user:
+    name: kubectl
+    groups: kubectl
+
+- name: Create kubectl directory
+  file:
+    path: "{{ kubectl_path }}"
+    state: directory
+    mode: 0755
+    owner: kubectl
+    group: kubectl
+
+- name: Check if kubectl binary already exists
+  stat:
+    path: "{{ kubectl_version_bin }}"
+  register: kubectl_version_bin_st
+
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl
+    dest: "{{ kubectl_version_bin }}"
+    owner: kubectl
+    group: kubectl
+  when: not kubectl_version_bin_st.stat.exists
+
+- name: Make kubectl executable
+  file:
+    path: "{{ kubectl_version_bin }}"
+    mode: 0755
+    owner: kubectl
+    group: kubectl
+
+- name: Symlink kubectl to /usr/local/bin
+  file:
+    src: "{{ kubectl_version_bin }}"
+    dest: "{{ kubectl_bin }}"
+    state: link

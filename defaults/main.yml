@@ -18,3 +18,10 @@ kops_bin_dir: /usr/local/bin
 kops_bin: "{{ kops_bin_dir }}/kops"
 kops_path: "/opt/kops"
 kops_version_bin: "{{ kops_path }}/{{ kops_version }}-linux-amd64"
+
+# defaults for kubectl
+kubectl_version: "1.13.0"
+kubectl_bin_dir: /usr/local/bin
+kubectl_bin: "{{ kubectl_bin_dir }}/kubectl"
+kubectl_path: "/opt/kubectl"
+kubectl_version_bin: "{{ kubectl_path }}/{{ kubectl_version }}-linux-amd64"
