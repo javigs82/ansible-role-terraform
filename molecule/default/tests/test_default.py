@@ -21,3 +21,14 @@ def test_is_awscli_bin_installed(host):
     command = host.run("aws --version")
     # trick to work in both ubuntu and centos
     assert ("aws-cli" in command.stdout) or ("aws-cli" in command.stderr)
+
+
+def test_is_kops_user_created(host):
+    user = host.user("kops")
+    assert user.name == "kops"
+    assert "kops" in user.groups
+
+
+def test_is_kops_bin_installed(host):
+    command = host.run("kops version")
+    assert "Version" in command.stdout

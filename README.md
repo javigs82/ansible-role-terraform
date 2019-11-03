@@ -2,7 +2,9 @@
 
 Role for working with terraform and other tools like:
 
+ - terraform 0.12.13
  - awscli
+ - kops 1.14.0
  - git
 
 ## Requirements
@@ -29,7 +31,6 @@ passed in as parameters) is always nice for users too:
 ## Author Information
 
 [javigs82](https://github.com/javigs82)
-
 
 # License
 

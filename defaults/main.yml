@@ -1,5 +1,5 @@
 ---
-# defaults file for terraform-bastion
+# defaults for terraform
 terraform_arch: "amd64"
 terraform_system: "linux"
 terraform_version: "0.12.13"
@@ -11,3 +11,10 @@ terraform_bin: "{{ terraform_bin_dir }}/terraform"
 terraform_path: "/opt/terraform"
 terraform_version_dir: "{{ terraform_path }}/{{ terraform_version }}"
 terraform_version_bin: "{{ terraform_version_dir }}/terraform"
+
+# defaults for kops
+kops_version: "1.14.0"
+kops_bin_dir: /usr/local/bin
+kops_bin: "{{ kops_bin_dir }}/kops"
+kops_path: "/opt/kops"
+kops_version_bin: "{{ kops_path }}/{{ kops_version }}-linux-amd64"

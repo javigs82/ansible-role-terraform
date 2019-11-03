@@ -73,3 +73,50 @@
   file:
     path: "{{ terraform_path }}/terraform"
     state: absent
+
+# Install kops
+
+- name: Ensure group kops exists
+  group:
+    name: kops
+    state: present
+
+- name: Ensure user kops is present
+  user:
+    name: kops
+    groups: kops
+
+- name: Create kops directory
+  file:
+    path: "{{ kops_path }}"
+    state: directory
+    mode: 0755
+    owner: kops
+    group: kops
+
+- name: Check if kops binary already exists
+  stat:
+    path: "{{ kops_version_bin }}"
+  register: kops_version_bin_st
+
+
+- name: Download kops
+  get_url:
+    url: https://github.com/kubernetes/kops/releases/download/{{ kops_version }}/kops-linux-amd64
+    dest: "{{ kops_version_bin }}"
+    owner: kops
+    group: kops
+  when: not kops_version_bin_st.stat.exists
+
+- name: Make kops executable
+  file:
+    path: "{{ kops_version_bin }}"
+    mode: 0755
+    owner: kops
+    group: kops
+
+- name: Symlink kops to /usr/local/bin
+  file:
+    src: "{{ kops_version_bin }}"
+    dest: "{{ kops_bin }}"
+    state: link

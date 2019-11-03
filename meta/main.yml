@@ -4,7 +4,7 @@ dependencies: []
 galaxy_info:
   role_name: terraform
   author: javigs82
-  description: this role aims to install terraform with common tool like awscli, kops among others
+  description: this role aims to install terraform with common tool like awscli and kops among others
   license: MIT
 
   min_ansible_version: 2.7
@@ -21,4 +21,4 @@ galaxy_info:
     - terraform
     - cloud
     - aws
-    - awscli
+    - kops
