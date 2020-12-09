@@ -32,6 +32,6 @@ passed in as parameters) is always nice for users too:
 
 [javigs82](https://github.com/javigs82)
 
-# License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
